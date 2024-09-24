@@ -54,8 +54,8 @@ canvas.pack(pady=20)
 # Criar o gradiente dentro do canvas
 create_gradient(canvas, 1200, 800, color1, color2)
 
-# Desenhar o retângulo do menu com cantos arredondados
-rounded_rectangle(canvas, 10, 10, 1190, 790, radius=70, fill="", outline="white", width=2)
+# Desenhar o retângulo do menu com cantos arredondados sem contorno
+rounded_rectangle(canvas, 10, 10, 1190, 790, radius=70, fill="", outline="", width=0)
 
 # Adicionar linha vertical no meio
 canvas.create_line(600, 10, 600, 790, fill="white", width=1)
