@@ -27,7 +27,7 @@ color2 = (60, 33, 121)   # Roxo
 # Janela principal
 root = tk.Tk()
 root.title("Disciplinas Cadastradas")
-root.geometry("1400x900")
+root.geometry("1000x800")
 root.configure(bg="white")
 
 # Título da janela
@@ -45,20 +45,24 @@ add_btn = tk.Button(
     relief="solid", 
     highlightbackground="white"
 )
-add_btn.pack(side="top", anchor="ne", padx=450, pady=10)  # Ajustado para o canto superior direito
+add_btn.pack(side="top", anchor="ne", padx=350, pady=10)  # Ajustado para o canto superior direito
 
 # Canvas para aplicar o gradiente no menu
-canvas = tk.Canvas(root, width=1200, height=800, highlightthickness=0)
+canvas = tk.Canvas(root, width=800, height=600, highlightthickness=0)
 canvas.pack(pady=20)
 
 # Criar o gradiente dentro do canvas
-create_gradient(canvas, 1200, 800, color1, color2)
+create_gradient(canvas, 800, 600, color1, color2)
 
-# Desenhar o retângulo do menu com cantos arredondados sem contorno
-rounded_rectangle(canvas, 10, 10, 1190, 790, radius=70, fill="", outline="", width=0)
+# Adicionar a imagem fita.png ao canvas (esquerda)
+fita_img = tk.PhotoImage(file="fita.png")
+canvas.create_image(50, 40, image=fita_img, anchor="center")
+
+# Desenhar o retângulo do menu com cantos arredondados dentro do novo tamanho
+rounded_rectangle(canvas, 10, 10, 790, 590, radius=50, fill="", outline="", width=0)
 
 # Adicionar linha vertical no meio
-canvas.create_line(600, 10, 600, 790, fill="white", width=1)
+canvas.create_line(400, 10, 400, 590, fill="white", width=1)
 
 # Lista de disciplinas
 disciplinas = [
@@ -66,28 +70,28 @@ disciplinas = [
     "História", "Física", "Química", "Biologia", "Inglês", "Espanhol"
 ]
 
-# Criar as disciplinas dentro do canvas
+# Criar as disciplinas dentro do canvas, ajustando para o novo tamanho
 for i, disciplina in enumerate(disciplinas):
-    x = 100 if i < 5 else 700  # Ajuste para a nova largura
-    y = 100 + (i % 5) * 120
+    x = 50 if i < 5 else 450  # Ajuste para a nova largura
+    y = 80 + (i % 5) * 90     # Ajuste para nova altura
     
     # Caixa de texto com o nome da disciplina (vazado com contorno branco)
-    rounded_rectangle(canvas, x, y, x + 350, y + 60, radius=10, fill="", outline="white", width=1)
+    rounded_rectangle(canvas, x, y, x + 300, y + 60, radius=10, fill="", outline="white", width=1)
     
     # Alterando a cor da letra para branco
-    canvas.create_text(x + 150, y + 30, text=disciplina, font=("Montserrat", 20), fill="white")
+    canvas.create_text(x + 150, y + 30, text=disciplina, font=("Montserrat", 16), fill="white")
 
     # Desenhar linha vertical dentro do quadrado da disciplina
-    canvas.create_line(x + 310, y + 1, x + 310, y + 60, fill="white", width=1)
+    canvas.create_line(x + 260, y + 1, x + 260, y + 60, fill="white", width=1)
 
     # Adicionar linha horizontal dentro do quadrado
-    canvas.create_line(x + 350, y + 30, x + 310, y + 30, fill="white", width=1)
+    canvas.create_line(x + 300, y + 30, x + 260, y + 30, fill="white", width=1)
 
     # Ícones de edição e exclusão próximos da borda
-    icon_x = x + 347  # Coordenada x para os ícones
+    icon_x = x + 297  # Coordenada x para os ícones
     icon_y = y + 30   # Coordenada y centralizada
-    canvas.create_text(icon_x, icon_y - 15, text="✏️", font=("Montserrat", 21), fill="white", tags="edit")  # Lápis
-    canvas.create_text(icon_x, icon_y + 13, text="🗑️", font=("Montserrat", 17), fill="white", tags="delete")  # Lixeira
+    canvas.create_text(icon_x, icon_y - 15, text="✏️", font=("Montserrat", 18), fill="white", tags="edit")  # Lápis
+    canvas.create_text(icon_x, icon_y + 13, text="🗑️", font=("Montserrat", 14), fill="white", tags="delete")  # Lixeira
 
 # Funções de edição e exclusão (placeholder)
 def edit_discipline(event):
@@ -99,5 +103,10 @@ def delete_discipline(event):
 # Bind dos eventos de clique para os ícones
 canvas.tag_bind("edit", "<Button-1>", edit_discipline)
 canvas.tag_bind("delete", "<Button-1>", delete_discipline)
+
+# Adicionar a imagem logo.png ao centro inferior fora do menu
+logo_img = tk.PhotoImage(file="logo.png")
+logo_label = tk.Label(root, image=logo_img, bg="white")
+logo_label.pack(pady=10)  # Colocado abaixo do canvas
 
 root.mainloop()
