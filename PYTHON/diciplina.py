@@ -95,7 +95,7 @@ for i, disciplina in enumerate(disciplinas):
     canvas.create_line(x + 500, y + 40, x + 460, y + 40, fill="white", width=1)
 
     # Ícones de edição e exclusão como botões
-    icon_x = x + 507  # Aumentado para mover os ícones para a direita
+    icon_x = x + 480  # Aumentado para mover os ícones para a direita
     icon_y = y + 40   # Coordenada y centralizada
     
     # Botão de edição (ícone de lápis)
