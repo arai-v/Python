@@ -45,7 +45,7 @@ add_btn = tk.Button(
     relief="solid", 
     highlightbackground="white"
 )
-add_btn.place(x=1100, y=20)  # Botão posicionado no canto superior direito
+add_btn.place(x=1400, y=20)  # Botão posicionado no canto superior direito
 
 # Canvas para aplicar o gradiente no menu
 canvas = tk.Canvas(root, width=1280, height=720, highlightthickness=0)
@@ -101,20 +101,20 @@ for i, disciplina in enumerate(disciplinas):
     icon_x = x + 430  # Mover os ícones para o canto direito da disciplina
     icon_y = y + 35   # Coordenada y centralizada
     
-    # Botão de edição (ícone de lápis)
-    edit_btn = tk.Button(canvas, text="✏️", font=("Montserrat", 14), fg="black", bg="#ffffff", bd=1, command=edit_discipline, width=2)
+    # Botão de edição (ícone de lápis) com altura reduzida
+    edit_btn = tk.Button(canvas, text="✏️", font=("Montserrat", 14), fg="black", bg="#ffffff", bd=1, command=edit_discipline, width=2, height=1)
     canvas.create_window(icon_x, icon_y - 15, window=edit_btn)
     
-    # Botão de exclusão (ícone de lixeira)
-    delete_btn = tk.Button(canvas, text="🗑️", font=("Montserrat", 14), fg="black", bg="#ffffff", bd=1, command=delete_discipline, width=2)
+    # Botão de exclusão (ícone de lixeira) com altura reduzida
+    delete_btn = tk.Button(canvas, text="🗑️", font=("Montserrat", 14), fg="black", bg="#ffffff", bd=1, command=delete_discipline, width=2, height=1)
     canvas.create_window(icon_x, icon_y + 15, window=delete_btn)
 
 # Botões de seta lateral para navegação
 arrow_left = tk.Button(root, text="⬅️", font=("Montserrat", 18), bg="white", fg="#004080", command=previous_page)
-arrow_left.place(x=350, y=400)  # Colocando no centro vertical à esquerda
+arrow_left.place(x=335, y=400)  # Colocando no centro vertical à esquerda
 
 arrow_right = tk.Button(root, text="➡️", font=("Montserrat", 18), bg="white", fg="#004080", command=next_page)
-arrow_right.place(x=1000, y=400)  # Ajustado para largura 1280
+arrow_right.place(x=1530, y=400)  # Ajustado para largura 1280
 
 # Carregar a imagem da logo e redimensioná-la
 logo_img = tk.PhotoImage(file="logo.png").subsample(2, 2)  # Reduzindo a escala pela metade
